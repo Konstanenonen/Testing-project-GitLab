@@ -1,0 +1,67 @@
+### **Create Project functionality Testsuit Overview**
+
+#******************** Settings ************************
+
+*** Settings ***
+
+Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Pre Condition	Open Browser
+Pre Condition   Must have a GitLab account
+Post Condition	Close All Browsers
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: write Project creation field variables
+
+PROJECT_URL= https://gitlab.com/projects/new
+ProjectName= ABC
+ProjectSlug= CBA
+TemplateName= EFG
+TemplateSlug= FGA
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# Positive Test
+# TODO: 
+	Create blank project,
+ 	Create template project 
+	Update name of template project, 
+	Delete template project
+
+Create Blank Project
+	Navigate to New Project Page  PROJECT_URL
+	Click Create blank project
+	Input Project Name  ProjectName
+	Input Project slug  ProjectSlug
+	Submit Create project Form
+	Verify Page should contain the new project page
+
+Create Template Project
+	Navigate to New Project Page  PROJECT_URL
+	Click Create from template project
+	Click Use template on Ruby on Rails
+	Input Project Name  TemplateName
+	Input Project slug  TemplateSlug
+	Submit Create project Form
+	Verify Page should contain the new template project page
+
+
+# Negative Test
+
+Error message Should Be Visible After Creating a Blank Project With The Previous Name 
+	Navigate to New Project Page  PROJECT_URL
+	Click Create blank project
+	Input the same Project Name  ProjectName
+	Input Project slug  ProjectSlug
+	Submit Create project Form
+	Verify tht Error message should show The form contains the following errors: Name has already been taken, Path has already been taken
+
+
