@@ -9,36 +9,31 @@ Documentation	Project Test scenario. CRUD Operation: Create, Read, Update, Delet
 Pre Condition	Open Browser
 Pre Condition   Must have a GitLab account
 Post Condition	Close All Browsers
+Tags	Project, TS-1-Project(For Jira project management issue reference)
 
 #******************* Common Variables ********************
 
-
 *** Variables ***
 
-# NOTE: Please Remove your login credential before uploading Assignments
-
-# TODO: write Project creation field variables
-
 PROJECT_URL= https://gitlab.com/projects/new
+BLANK_PROJECT_URL= https://gitlab.com/projects/new#blank_project
+TEMPLATE_PROJECT_URL= https://gitlab.com/projects/new#create_from_template
+SETTINGS_URL= https://gitlab.com/Konstanenonen/cba/edit
 ProjectName= ABC
 ProjectSlug= CBA
 TemplateName= EFG
 TemplateSlug= FGA
+NewName= NEW
 
 #******************** Test Cases *************************
 
 *** Test Case ***
 
 # Positive Test
-# TODO: 
-	Create blank project,
- 	Create template project 
-	Update name of template project, 
-	Delete template project
 
 Create Blank Project
 	Navigate to New Project Page  PROJECT_URL
-	Click Create blank project
+	Click Create blank project  BLANK_PROJECT_URL
 	Input Project Name  ProjectName
 	Input Project slug  ProjectSlug
 	Submit Create project Form
@@ -46,13 +41,28 @@ Create Blank Project
 
 Create Template Project
 	Navigate to New Project Page  PROJECT_URL
-	Click Create from template project
-	Click Use template on Ruby on Rails
+	Click Create from template project  TEMPLATE_PROJECT_URL
+	Click Use template Ruby on Rails
 	Input Project Name  TemplateName
 	Input Project slug  TemplateSlug
 	Submit Create project Form
 	Verify Page should contain the new template project page
 
+Update Name of The Template Project
+	Follow steps from Create Blank Project
+	Click settings  SETTINGS_URL
+	Input Project name  NewName
+	Click Save changes
+	Verify message should contain Project 'NewName' was successfully updated
+
+Delete template project
+	Follow steps from Create Template Project
+	Click settings  SETTINGS_URL
+	Click Expand button on Advanced
+	Click Delete project
+	Type the provided confirmation text to the confirmation field
+	Click Yes, delete project button
+	Verify Page should contain a message Project 'user / TemplateName' is in the process of being deleted
 
 # Negative Test
 
@@ -62,6 +72,6 @@ Error message Should Be Visible After Creating a Blank Project With The Previous
 	Input the same Project Name  ProjectName
 	Input Project slug  ProjectSlug
 	Submit Create project Form
-	Verify tht Error message should show The form contains the following errors: Name has already been taken, Path has already been taken
+	Verify that Error message should show The form contains the following errors: Name has already been taken, Path has already been taken
 
 

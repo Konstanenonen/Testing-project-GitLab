@@ -9,14 +9,13 @@ Documentation	User Registration Test scenario with verification with valid crede
 
 Pre Condition	Open Browser
 Post Condition	Close All Browsers
-
+Tags	Register, TS-1-Register(For Jira project management issue reference)
 
 #******************* Common Variables ********************
 
 
 *** Variables ***
 
-# NOTE: Please Remove your login credential before uploading Assignments
 # Here Test Data defined as a Variable for easy access
 
 SIGN_UP_URL= https://gitlab.com/users/sign_up
@@ -44,10 +43,9 @@ Register with valid Credential
 	Input Email UserEmail
 	Input Password UserPassword
 	Click checkbox recaptcha
-	Submit Regisrer Form
+	Submit Register Form
 	Verify Page should contain Almost There page
 	
-
 # Negative Test
 
 Error message Should Be Visible After Invalid Register With Empty Password
@@ -68,8 +66,8 @@ Error message Should Be Visible After Invalid Register With Invalid Email
 	Input Email Invalid_Email
 	Input Password UserPassword
 	Click checkbox recaptcha
-	Submit Regisrer Form
-	Verify that Error messgae should show Please provide email address
+	Submit Register Form
+	Verify that Error message should show Please provide email address
 
 Error message Should Be Visible After Invalid Register With Recaptcha Not Checked
 	Navigate to Register Page SIGN_UP_URL
@@ -79,8 +77,8 @@ Error message Should Be Visible After Invalid Register With Recaptcha Not Checke
 	Input Email UserEmail
 	Input Password UserPassword
 	Don't click checkbox recaptcha
-	Submit Regisrer Form
-	Verify that Error messgae should show There was an error with the reCAPTCHA. Please solve the reCAPTCHA again
+	Submit Register Form
+	Verify that Error message should show There was an error with the reCAPTCHA. Please solve the reCAPTCHA again
 	
 
 

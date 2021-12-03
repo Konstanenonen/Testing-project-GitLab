@@ -15,7 +15,6 @@ Tags	Login, TS-1-Login(For Jira project management issue reference)
 
 *** Variables ***
 
-# NOTE: Please Remove your login credential before uploading Assignments
 # Here Test Data defined as a Variable for easy access
 
 LOGIN_URL= https://gitlab.com/users/sign_in

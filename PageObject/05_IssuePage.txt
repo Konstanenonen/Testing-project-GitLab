@@ -1,33 +1,74 @@
+### **Issue Page functionality Testsuit Overview**
 
 #******************** Settings ************************
 
 *** Settings ***
 Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
 
-# TODO: Write Precondition and Postcondition 
-
-Pre Condition	Tips: Project must be created by the user before 
-Post Condition	
-
+Pre Condition	Open Browser
+Pre Condition   Must have a GitLab account
+Pre Condition   Project must be created by the user before
+Post Condition	Close All Browsers
+Tags	Issue, TS-1-Issue(For Jira project management issue reference)
 
 #******************* Common Variables ********************
 
-
 *** Variables ***
 
-# NOTE: Please Remove your login credential before uploading Assignments
-
-# TODO: Write Issue creation field variables, Updated name of the issue
-
-
+GITLAB_URL= https://gitlab.com/
+IssueTitle= issue
+NewTitle= new
+Empty=
 
 #******************** Test Cases *************************
 
 *** Test Case ***
 
 # Positive Test
-# TODO: 
-	Create issue,
- 	Update name of issue, 
-	Create second issue with privious updated name
-    Delete first issue
+
+Create Issue
+	Navigate to your projects  GITLAB_URL
+	Click your existing Project
+	Click Issues
+	Click New Issues Button
+	Input Title  IssueTitle
+	Click create issue Button
+	Verify Page should contain your new issue with the correct title
+
+Update Name of the Issue
+	Follow steps from Create Issue
+	Click Edit title and description Button
+	Input Title  NewTitle
+	Click Save changes Button
+	Verify Page should contain the same issue with updated name
+
+Create Second Issue With Previous Updated Name
+	Follow steps from Create Issue
+	Follow steps from Update Name of the Issue
+	Click Issues
+	Click New Issues Button
+	Input Title  IssueTitle
+	Click create issue Button
+	Verify Page should contain your new issue with the correct title
+
+Delete First Issue
+	Follow steps from Create Issue
+	Follow steps from Update Name of the Issue
+	Follow steps from Create Issue With Previous Updated Name
+	Click Issues
+	Click Issue with name NewTitle
+	Click Edit title and description Button
+	Click Delete issue Button
+	Click Delete issue Button
+	The Verify Page should contain message The issue was successfully deleted
+
+# Negative Test
+
+Crate Issue With Empty Name
+	Navigate to your projects  GITLAB_URL
+	Click your existing Project
+	Click Issues
+	Click New Issues Button
+	Input Title  Empty
+	Click create issue Button
+	Cursor should change to a stop sign and clicking the issue Button shouldn't be possible
